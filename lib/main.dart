@@ -60,44 +60,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.brightness_6),
-            onPressed: widget.toggleTheme,
-          ),
-        ],
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    // 1) Paint body behind the AppBar
+    extendBodyBehindAppBar: true,
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Text(
+        "Test App",
+        style: TextStyle(color: Colors.black.withOpacity(0.8)),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+    ),
+    body: Stack(
+      children: [
+        // 2a) Full-screen background image with opacity
+        Positioned.fill(
+          child: Opacity(
+            opacity: 0.5, // adjust between 0.0–1.0
+            child: Image.asset(
+              'assets/images/pexels-eberhardgross-1366919.jpg',
+              fit: BoxFit.cover,
             ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
+
+        // 2b) Your actual content goes here (e.g. other widgets)
+        //  For demo I’ll just center some text:
+        Center(
+          child: Text(
+            "Hello, world!",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              shadows: [Shadow(blurRadius: 4, color: Colors.black45)],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 }
