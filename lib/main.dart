@@ -1,3 +1,5 @@
+// import 'dart:ui_web';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,17 +16,38 @@ class TestApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent,brightness: Brightness.dark)
       ),
-      home: Scaffold(
+      home : MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int? val;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(title: Text('Test',style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800),),
         backgroundColor: Colors.amberAccent,
         // shadowColor: Colors.amberAccent,
         ),
-        bottomNavigationBar: NavigationBar(destinations: [NavigationDestination(icon: Icon(Icons.abc_sharp),
+        body: val == 0 ? Center(child: Text('This is the First Page')): Center(child: Text("This is the second Page"),),
+        bottomNavigationBar: NavigationBar(destinations: [NavigationDestination(icon: Icon(Icons.access_time),
          label: 'Home',),
-         NavigationDestination(icon: Icon(Icons.access_time), label: 'Alarm'),
+          NavigationDestination(icon: Icon(Icons.access_time), label: 'Alarm',),
          ],
+         onDestinationSelected: (int value){
+          setState(() {
+            val = value;
+          });
+         },
          ),
-      ),
-    );
+      );
   }
 }
