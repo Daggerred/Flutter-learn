@@ -1,5 +1,5 @@
 // import 'dart:ui_web';
-
+import './widgets/bottom_navbar_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int? val;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,17 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.amberAccent,
         // shadowColor: Colors.amberAccent,
         ),
-        body: val == 0 ? Center(child: Text('This is the First Page')): Center(child: Text("This is the second Page"),),
-        bottomNavigationBar: NavigationBar(destinations: [NavigationDestination(icon: Icon(Icons.access_time),
-         label: 'Home',),
-          NavigationDestination(icon: Icon(Icons.access_time), label: 'Alarm',),
-         ],
-         onDestinationSelected: (int value){
-          setState(() {
-            val = value;
-          });
-         },
-         ),
+        // body: val == 0 ? Center(child: Text('This is the First Page')): Center(child: Text("This is the second Page"),),
+        bottomNavigationBar: BottomNavbarWidget(),
       );
   }
 }
