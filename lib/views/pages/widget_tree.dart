@@ -1,9 +1,14 @@
+import 'package:first_actual/views/pages/home_page.dart';
 import 'package:first_actual/widgets/bottom_navbar_widget.dart';
 import 'package:flutter/material.dart';
 
+ List<Widget> pages = [
+    HomePage(),
+
+  ];
 
 class WidgetTree extends StatelessWidget {
-  
+ 
   
   const WidgetTree({super.key});
 
@@ -18,7 +23,7 @@ class WidgetTree extends StatelessWidget {
         backgroundColor: Colors.amberAccent,
         // shadowColor: Colors.amberAccent,
       ),
-      // body: val == 0 ? Center(child: Text('This is the First Page')): Center(child: Text("This is the second Page"),),
+       body: pages.elementAt(0),
       bottomNavigationBar: BottomNavbarWidget(),
     );
   }
