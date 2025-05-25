@@ -1,4 +1,5 @@
 // import 'dart:ui_web';
+import 'package:first_actual/data/notifiers.dart';
 import 'package:first_actual/views/pages/widget_tree.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +12,28 @@ class TestApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent,brightness: Brightness.dark)
-      ),
-      home : MyHomePage()
-    );
+    return ValueListenableBuilder(valueListenable: isDarkNotifier, builder: (context, isDarkModeselected, child) {
+      return  isDarkModeselected ?
+      MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.redAccent,
+              brightness: Brightness.dark,
+            ),
+          ),
+          home: MyHomePage(),
+        ) : MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  colorScheme: ColorScheme.fromSeed(
+                    seedColor: Colors.white54,
+                    brightness: Brightness.light,
+                  ),
+                ),
+                home: MyHomePage(),
+              );
+    },);
   }
 }
 
