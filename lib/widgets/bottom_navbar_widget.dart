@@ -1,3 +1,4 @@
+import 'package:first_actual/data/notifiers.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavbarWidget extends StatefulWidget {
@@ -8,18 +9,21 @@ class BottomNavbarWidget extends StatefulWidget {
 }
 
 class _BottomNavbarWidgetState extends State<BottomNavbarWidget> {
-  int? val;
+  //int? val;
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(destinations: [NavigationDestination(icon: Icon(Icons.access_time),
+    return ValueListenableBuilder(valueListenable: selectedPageIndex, builder: (context, selectedPage, child) {
+      return
+      NavigationBar(
+        selectedIndex : selectedPage,
+        destinations: [NavigationDestination(icon: Icon(Icons.home_max_sharp),
          label: 'Home',),
-          NavigationDestination(icon: Icon(Icons.access_time), label: 'Alarm',),
+          NavigationDestination(icon: Icon(Icons.person_4_sharp), label: 'Person',),
          ],
-         onDestinationSelected: (int value){
-          setState(() {
-            val = value;
-          });
+         onDestinationSelected: (int selectedPage){
+          selectedPageIndex.value = selectedPage;
          },
          );
+    },);
   }
 }
