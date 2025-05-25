@@ -13,26 +13,17 @@ class TestApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(valueListenable: isDarkNotifier, builder: (context, isDarkModeselected, child) {
-      return  isDarkModeselected ?
+      return  
       MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
               seedColor: Colors.redAccent,
-              brightness: Brightness.dark,
+              brightness: isDarkModeselected  ? Brightness.dark : Brightness.light,
             ),
           ),
           home: MyHomePage(),
-        ) : MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(
-                    seedColor: Colors.white54,
-                    brightness: Brightness.light,
-                  ),
-                ),
-                home: MyHomePage(),
-              );
+        ) ;
     },);
   }
 }
